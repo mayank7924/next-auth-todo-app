@@ -1,0 +1,15 @@
+version: "3"
+services:
+  database:
+    image: library/mysql:8.0.23
+    ports:
+      - 13306:3306
+    environment:
+      MYSQL_DATABASE: test
+      MYSQL_ROOT_PASSWORD: s3cr3ts1z3d
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./db-scripts/database.sql:/docker-entrypoint-initdb.d/database.sql
+volumes:
+  mysql_data:
+    driver: local
